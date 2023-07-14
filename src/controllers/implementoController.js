@@ -31,10 +31,6 @@ const getAllImplementos = async () => {
 // Otros controladores para la gestión de implementos (actualizar, eliminar, etc.)
 // ...
 
-module.exports = {
-  getAllImplementos
-}
-
 //puras weas
 
 const getAllImplementosByestadoOperativo = async (estado) => {
@@ -43,6 +39,7 @@ const getAllImplementosByestadoOperativo = async (estado) => {
 };
 
 module.exports = {
+  getAllImplementos,
   getAllImplementosByestadoOperativo
 }
 
