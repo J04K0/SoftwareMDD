@@ -1,5 +1,6 @@
-import express from 'express';
-import mongoose from 'mongoose';
+const express = require('express');
+const mongoose = require('mongoose');
+const implementoRoutes = require("./routes/implementoRoutes")
 
 const app = express();
 
@@ -7,12 +8,12 @@ app.use(express.json());
 
 //conexión a mongodb local
 try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/userDB')
+    mongoose.connect('mongodb+srv://md-project:md-superpwd@cluster0.hovtuoy.mongodb.net/?retryWrites=true&w=majority');
     console.log('Conectado a mongodb');
 } catch (error) {
     console.log(error);
 }
-
+//user index part
 const userSchema = new mongoose.Schema({
     nombre: String,
     apellido: String,
@@ -56,6 +57,8 @@ app.delete('/:id',async(req, res) => {
         mensage: 'Usuario eliminado',
     })
 })
+
+app.use(implementoRoutes)
 
 
 app.listen(3001, () => {

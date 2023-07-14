@@ -1,7 +1,7 @@
-const Implemento = require('../models/Implemento');
+const Implemento = require('../models/implemento');
 
 // Controlador para crear un nuevo implemento
-exports.createImplemento = async (req, res) => {
+const createImplemento = async (req, res) => {
   try {
     const { descripcion, categoria, estado, numeroSerie } = req.body;
 
@@ -23,14 +23,26 @@ exports.createImplemento = async (req, res) => {
 };
 
 // Controlador para obtener todos los implementos
-exports.getAllImplementos = async (req, res) => {
-  try {
+const getAllImplementos = async () => {
     const implementos = await Implemento.find();
-    res.status(200).json(implementos);
-  } catch (error) {
-    res.status(500).json({ message: 'Error al obtener implementos' });
-  }
+    return implementos;
 };
 
 // Otros controladores para la gestión de implementos (actualizar, eliminar, etc.)
 // ...
+
+module.exports = {
+  getAllImplementos
+}
+
+//puras weas
+
+const getAllImplementosByestadoOperativo = async (estado) => {
+  const implementos = await Implemento.find({ estado });
+  return implementos;
+};
+
+module.exports = {
+  getAllImplementosByestadoOperativo
+}
+
